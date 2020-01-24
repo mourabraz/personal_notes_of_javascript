@@ -25,6 +25,7 @@ https://www.ecma-international.org/ecma-262/10.0/index.html#sec-strict-mode-of-e
 - Dentro de um arquivo.js que será executado pelo node o `this` referência o module.exports.
 
 ```js
+// ./codes/2.js
 console.log("this dentro do arquivo que será executado");
 console.log("this === global object", this === global);
 console.log("o valor de this é", this);
