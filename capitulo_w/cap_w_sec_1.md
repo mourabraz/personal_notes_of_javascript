@@ -4,7 +4,7 @@
 
 - isto uqer dizer que o ambiente de execução (_runtime enviroment_) possui apenas uma _call stack_, isto é, só pode realizar uma operação por vez.
 
-Assim que iniciamos a execução do código, iniciamos "ambiente" de execução global, melhor dito, um _global execution context_, o contexto em que o código irá ser executado.
+Assim que iniciamos a execução do código, iniciamos "ambiente", o contexto de execução global, melhor dito, um _global execution context_, o contexto em que o código irá ser executado.
 
 Exemplificando:
 
@@ -64,4 +64,40 @@ O código será executado no _global execution context_
 
 <div>
   <img width="1000" src='./imgs/code_5.png'>
+</div>
+
+5 - a pŕoxima linha significativa é a nº 13. `const number = 10;` a variável de nome _number_ é criada e inicializada com o valor `10`;
+
+6 - a pŕoxima linha significativa é a nº 15. `const numberSquare = square(number);` a variável de nome _numberSquare_ é criada e inicializada com o retorno da invocação da função `square`. Como a função `square` está sendo invocada, chamada (determinado pelo uso dos parêntesis), esta função é adicionada a `call stack`, em um _execution context_ é criado para a execução da função:
+
+<div>
+  <img width="1000" src='./imgs/code_6.png'>
+</div>
+
+6.1 - a função `square` recebe como argumento o valor `10` este valor é atribuído ao parâmetro `n` dentro da `local memory` (no escopo da função) do seu `execution context`. A função `square` declara uma variável de nome `result`, que por sua vez recebe o retorno da chamada da função `multiply`, abrindo um novo _execution context_ dentro do anterior. A função `multiply` recebe dois argumentos, que são o valor de `n` que está na memória local do contexto de execução da função `square`...
+
+6.2 - o processo se repete com a função `multiply` que ao retornar o valor `100` para a variável de nome `result` (dentro da memória local do contexto de execução da função `square`) é retirada da _call stack_...
+
+6.3 - após a atribuíção do valor `100` à variável `result` a função `square` retorna o valor para a variável de nome `numberSquare` e é retirada da _call stack_:
+
+<div>
+  <img width="1000" src='./imgs/code_7.png'>
+</div>
+
+7 - na linha 16 já temos a seguinte situação:
+
+<div>
+  <img width="1000" src='./imgs/code_8.png'>
+</div>
+
+8 - na linha 17 adicionamos o `console.log(numberSquare)` à _call stack_ que após a sua execução será retirada da mesma:
+
+<div>
+  <img width="1000" src='./imgs/code_9.png'>
+</div>
+
+9 - analogamente o mesmo acontece na linha 19, sendo impresso no console o valor `'end'`. Após a execução da última linha o programa termina e o contexto global de execução é retirado (e toda a memória liberada).
+
+<div>
+  <img width="1000" src='./imgs/code_10.png'>
 </div>
