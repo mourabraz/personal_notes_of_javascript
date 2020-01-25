@@ -21,7 +21,7 @@ function square(n) {
   return result;
 }
 
-console.log('start');
+console.log("start");
 
 const number = 10;
 
@@ -29,7 +29,7 @@ const numberSquare = square(number);
 
 console.log(numberSquare);
 
-console.log('end');
+console.log("end");
 ```
 
 <div>
@@ -63,5 +63,5 @@ O código será executado no _global execution context_
 4 - `console.log('start');` na `STACK` é realizado e a mensagem escrita no console. Após a realização do comando o console.log() é retirado da `STACK` (é _popped out of the stack_)
 
 <div>
-  <img width="1000" src='./imgs/code_4.png'>
+  <img width="1000" src='./imgs/code_5.png'>
 </div>
