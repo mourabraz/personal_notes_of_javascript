@@ -2,7 +2,7 @@
 
 ## A palavra `this`
 
-- a palavra reservada `this` pode possuir diferentes valores, podendo ser: `undefined`, o objecto global, o object window, o 'module.exports', ou um outro objecto criado.
+- a palavra reservada `this` pode possuir diferentes valores, podendo ser: `undefined` (_mais rigorosamente o `this` neste caso não está inicializado_), o objecto global, o object window, o 'module.exports', ou um outro objecto criado.
 
 - o `this`, também pode ter valores diferentes entre os modos _strict_ e não _strict_
 
@@ -20,6 +20,57 @@ https://www.ecma-international.org/ecma-262/10.0/index.html#sec-strict-mode-of-e
 
 - repare-se que o console.log() foi chamado dentro do node
 
+2 - (NO MODO **NÃO STRICT**) dentro de funções quando invocadas:
+
+```js
+// ./code/3.js
+//"use strict";
+//executed in global execution enviroment
+function whoIsThis1() {
+  console.log(this);
+}
+
+//executed in another function execution enviroment
+function whoIsThis2() {
+  (function teste() {
+    console.log(this === global);
+  })();
+}
+function whoIsThis3() {
+  function teste() {
+    console.log(this === global);
+  }
+  (function teste2() {
+    teste();
+  })();
+}
+
+whoIsThis1();
+whoIsThis2();
+whoIsThis3();
+```
+
+<div>
+  <img width="1000" src='./imgs/section_2/this_no_node_3.png'>
+</div>
+
+- **atenção que isso só é válido sem o uso do _strict mode_, mais abaixo tem os casos do `this` retornar `undefined`, mas para demonstrar, se adicionarmos o modo strict**:
+
+```js
+// ./code/3.js
+"use strict";
+
+function whoIsThis() {
+  console.log(this);
+}
+
+whoIsThis();
+```
+
+<div>
+  <img width="1000" src='./imgs/section_2/this_no_node_3_2.png'>
+</div>
+
 # `this` referência o valor do `module.exports`
 
 - Dentro de um arquivo.js que será executado pelo node o `this` referência o module.exports.
@@ -33,4 +84,12 @@ console.log("o valor de this é", this);
 
 <div>
   <img width="1000" src='./imgs/section_2/this_no_arquivo.png'>
+</div>
+
+# `this` referência o valor do `window` do browser
+
+- Executando o console.log(this) dentro do console do broswer, temos que o `this` referência o objecto `window`
+
+<div>
+  <img width="1000" src='./imgs/section_2/this_no_browser.png'>
 </div>
