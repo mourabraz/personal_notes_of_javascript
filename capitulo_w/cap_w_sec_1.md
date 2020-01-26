@@ -2,7 +2,7 @@
 
 ## Javascript é _single thread_ (de uma só tarefa)
 
-- isto uqer dizer que o ambiente de execução (_runtime enviroment_) possui apenas uma _call stack_, isto é, só pode realizar uma operação por vez.
+- isto quer dizer que o ambiente de execução (_runtime enviroment_) possui apenas uma _call stack_, isto é, só pode realizar uma operação por vez.
 
 Assim que iniciamos a execução do código, iniciamos "ambiente", o contexto de execução global, melhor dito, um _global execution context_, o contexto em que o código irá ser executado.
 
@@ -42,7 +42,7 @@ O código será executado no _global execution context_
   <img width="1000" src='./imgs/global_execution_context.png'>
 </div>
 
-1 - linha 1, o que acontece é que a função de nome `multiply` será colocada em memória no escopo global:
+1 - linha 1, o que acontece é que a função de nome `multiply` será colocada na memória global:
 
 <div>
   <img width="1000" src='./imgs/code_2.png'>

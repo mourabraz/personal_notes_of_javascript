@@ -93,3 +93,11 @@ console.log("o valor de this é", this);
 <div>
   <img width="1000" src='./imgs/section_2/this_no_browser.png'>
 </div>
+
+# `this` na chamada de um método é sempre o object a esquerda!
+
+-
+
+---
+
+this existem em todos os contextos de execução
