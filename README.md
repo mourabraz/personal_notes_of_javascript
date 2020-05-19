@@ -2,6 +2,8 @@
 
 ## Capítulo 1 - Tipos de dados e variáveis ([ler](./capitulo_1))
 
+## Capítulo v - Classes no Javascript ([ler](./capitulo_v))
+
 ## Capítulo w - Fundações do Javascript ([ler](./capitulo_w))
 
 ## Capítulo x - Asynchronous Javascript ([ler](./capitulo_x))
