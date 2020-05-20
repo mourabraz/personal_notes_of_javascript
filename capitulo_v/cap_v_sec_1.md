@@ -228,13 +228,19 @@ console.log(cliente1.__proto__);
 
 ### em memória como resultado da execução do código temos:
 
+> :eyes: Por convenção usa-se a primeira letra das funções geradoras, que necessitem ser executadas com a precedência da palavra reservada `new`, escrita em letra maiúscula. Assim a função `geradorDeCliente` passou a ser nomeada como `GeradorDeCliente`.
+
 <div align="center">
   <img width="800" src='./imgs/7.png'>
 </div>
 
 - no console
-<div align="center" style="margin-bottom: 50px">
+<div align="center">
   <img width="400" src='./imgs/8.png'>
 </div>
 
-> :eyes: Por convenção usa-se a primeira letra das funções geradoras, que necessitem ser executadas com a precedência da palavra reservada `new`, escrita em letra maiúscula. Assim a função `geradorDeCliente` passou a ser nomeada como `GeradorDeCliente`.
+### Então o `new` na verdade faz automaticamente três coisas quando a função geradora é invocada!
+
+1. cria um novo objecto com a referência `this`;
+2. atribui à propriedade `__proto__` do `this` (o novo ojecto criado) a referência ao objecto `prototype` da função geradora invocada;
+3. retorna o valor do `this` (o valor do objecto criado).
