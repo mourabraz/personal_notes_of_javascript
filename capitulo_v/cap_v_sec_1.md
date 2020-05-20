@@ -476,3 +476,5 @@ const cliente1 = new GeradorDeCliente("André", "Prince");
 
 console.log(GeradorDeCliente.totalDeClientesCriados); // 1
 ```
+
+## Javascript não é uma linguagem desenhada para ser usada em um paradigma Orientado a objectos, é uma lingugaem orientada a protótipos. Mas nada impede, e é bem comum, **programar em javascript com o paradigma Orientado a Objectos**

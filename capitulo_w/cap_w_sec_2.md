@@ -100,4 +100,4 @@ console.log("o valor de this é", this);
 
 ---
 
-this existem em todos os contextos de execução
+this existe em todos os contextos de execução!
