@@ -244,3 +244,57 @@ console.log(cliente1.__proto__);
 1. cria um novo objecto com a referência `this`;
 2. atribui à propriedade `__proto__` do `this` (o novo ojecto criado) a referência ao objecto `prototype` da função geradora invocada;
 3. retorna o valor do `this` (o valor do objecto criado).
+
+#### \*\*Pequeno parentêsis
+
+:skull_and_crossbones: :skull_and_crossbones: :skull_and_crossbones: **CUIDADO** com o valor do `this` nas funções adicionadas ao `prototype` da função geradora. O valor do `this` só será o valor do objecto que chama a função caso o `this` não esteja aninhado em outra função.
+
+por exemplo:
+
+```js
+function GeradorDeCliente(nome, sobrenome) {
+  this.nome = nome;
+  this.sobrenome = sobrenome;
+}
+
+GeradorDeCliente.prototype.nomeCompleto = function () {
+  function retorneNomeCompleto() {
+    return this.nome + " " + this.sobrenome;
+  }
+
+  return retorneNomeCompleto();
+};
+
+const cliente1 = new GeradorDeCliente("André", "Prince");
+```
+
+ao executar:
+
+```js
+cliente1.nomeCompleto();
+```
+
+será executada a função aninhada `retorneNomeCompleto()` e o `this` dentro desta função não faz referência ao objecto `cliente1`, mas ao _Global Object_, _Window Object_ etc
+
+- uma forma de resolver isso pode ser com um artifício que é criar uma referência ao `this` da função `nomeCompleto` e, portanto, ao objecto `cliente1`. Ou podemos usar uma `Arrow Function`, um `bind` etc.
+
+```js
+GeradorDeCliente.prototype.nomeCompleto = function () {
+  const self = this;
+  function retorneNomeCompleto() {
+    return self.nome + " " + self.sobrenome;
+  }
+
+  return retorneNomeCompleto();
+};
+```
+
+```js
+GeradorDeCliente.prototype.nomeCompleto = function () {
+  const retorneNomeCompleto = () => {
+    return this.nome + " " + this.sobrenome;
+  };
+
+  return retorneNomeCompleto();
+};
+```
