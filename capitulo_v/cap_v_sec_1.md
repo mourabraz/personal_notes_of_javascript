@@ -177,7 +177,7 @@ console.log(cliente1.nomeEmCaixaBaixa());
 </div>
 
 - Ok! com o `new` o novo objecto foi criado e retornado automaticamente, mas e as `funçõesDeClienteAgrupadas`?
-- e o `this`?: com o uso do `new` na invocação da função geradora **o `this` passa a ser o novo objecto criado**. Caso a função geradora, escrita da forma como está, fosse executada sem a precedência do `new` o `this` seria o que? _depende_, pois pode vir a ser o _Global Object_, o _Window Object_ etc. Quando uma função geradora é implementada como no caso acima ela tem de ser executada com a precedência da palavra reservada `this`.
+- e o `this`?: com o uso do `new` na invocação da função geradora **o `this` passa a ser o novo objecto criado**. Caso a função geradora, escrita da forma como está, fosse executada sem a precedência do `new` o `this` seria o que? _depende_, pois pode vir a ser o _Global Object_, o _Window Object_, _undefined_ etc. Quando uma função geradora é implementada como no caso acima ela tem de ser executada com a precedência da palavra reservada `this`.
 
 > :eyes: Por convenção usa-se a primeira letra das funções geradoras, que necessitem ser executadas com a precedência da palavra reservada `new`, escrita em letra maiúscula. Assim a função `geradorDeCliente` passou a ser nomeada como `GeradorDeCliente`.
 
@@ -297,4 +297,182 @@ GeradorDeCliente.prototype.nomeCompleto = function () {
 
   return retorneNomeCompleto();
 };
+```
+
+### 3º Passo na Solução (_the final one_)
+
+#### Temos até agora a seguinte solução para a criação dos objectos `clientes` do nosso programa.
+
+```js
+function GeradorDeCliente(nome, sobrenome) {
+  this.nome = nome;
+  this.sobrenome = sobrenome;
+}
+
+GeradorDeCliente.prototype.nomeCompleto = function () {
+  return this.nome + " " + this.sobrenome;
+};
+
+GeradorDeCliente.prototype.nomeEmCaixaBaixa = function () {
+  return this.nome.toLowerCase();
+};
+
+const cliente1 = new GeradorDeCliente("André", "Prince");
+const cliente2 = new GeradorDeCliente("Sérgio", "Júnior");
+
+console.log(cliente1.nome);
+console.log(cliente1.nomeCompleto());
+console.log(cliente1.__proto__);
+```
+
+1. Criamos uma função geradora para criar nossos entes, nossos objectos `cliente`, e com isso agrupar todas as características dessa estrutura de dados em uma única função.
+2. Adicionamos comportamentos a esse objecto ao `prototype` da função geradora, pois, assim, ao usarmos o `new` antes da execução da função geradora, para criar novos objectos, automaticamente esse object `protototype` estará ligado pela propriedade `__proto__` do objecto `cliente` criado. (reveja o último esquema da memória).
+
+Mas, isso não basta. Pois fica muito estranho a função geradora estar separada da adicção dos métodos ao objecto `prototype`.
+Daí podemos usar a palavra reservada `class` que nos permite juntar a função geradora à manipulação do `prototype`.
+
+assim, passamos a ter algo como:
+
+```js
+class GeradorDeCliente {
+  constructor(nome, sobrenome) {
+    this.nome = nome;
+    this.sobrenome = sobrenome;
+  }
+
+  nomeCompleto() {
+    return this.nome + " " + this.sobrenome;
+  }
+
+  nomeEmCaixaBaixa() {
+    return this.nome.toLowerCase();
+  }
+}
+
+const cliente1 = new GeradorDeCliente("André", "Prince");
+
+console.log(cliente1.nome);
+console.log(cliente1.nomeCompleto());
+console.log(cliente1.__proto__);
+```
+
+- resultado no console do _browser_:
+<div align="center">
+  <img width="800" src='./imgs/9.png'>
+</div>
+
+### O que a palavra reservada `class` fez foi permitir uma apresentação melhor, nada além disso, por isso que classes no sentido de `class` diz-se que é um _syntax sugar_ em javascript. Por baixo dos panos nada mudou até o término do 2º passo da solução.
+
+### Após o uso da `class`, na memória, nada mudou em comparação com o último esquema apresentado.
+
+do [MDN Web docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+
+> _JavaScript classes, introduced in ECMAScript 2015, are primarily syntactical sugar over JavaScript's existing prototype-based inheritance. The class syntax does not introduce a new object-oriented inheritance model to JavaScript._
+
+> :eyes: As classes não passam pelo _hoisting_, por isso, declare as classes antes de as usar.
+
+### Então com a palavra reservada `class` ficou mais familiar e fácil (porque juntou a função geradora e a manipulação do objecto `prototype`) lidar com esta forma de programar (mais orientada a objectos - tudo o que queremos é produzir objectos de forma mais eficaz possível). Mas em javascript existem "particularidades".
+
+#### _static methods_
+
+Por exemplo, vamos primeiro adicionar um método estático à classe, primeiro o código e depois o que acontece em memória depois de instanciar um objecto com a classe. Ficará fácil perceber o que a palavra reservada `static` faz!
+
+```js
+class GeradorDeCliente {
+  constructor(nome, sobrenome) {
+    this.nome = nome;
+    this.sobrenome = sobrenome;
+  }
+
+  static metodoEstaticoDaClasse() {
+    return "Eu venho da Classe Gerador de Cliente";
+  }
+
+  nomeCompleto() {
+    return this.nome + " " + this.sobrenome;
+  }
+
+  nomeEmCaixaBaixa() {
+    return this.nome.toLowerCase();
+  }
+}
+
+const cliente1 = new GeradorDeCliente("André", "Prince");
+
+console.log(cliente1.nome);
+console.log(cliente1.nomeCompleto());
+console.log(GeradorDeCliente.metodoEstaticoDaClasse());
+```
+
+O método estático não está disponível nos objectos instanciados por esta classe, eles ficam disponíveis apenas na declaração da Classe.
+
+- na memória temos:
+<div align="center">
+  <img width="800" src='./imgs/10.png'>
+</div>
+
+- repare que o objecto criado, instanciado e de nome `cliente1` não tem qualquer ligação ao método estático da classe, o objecto criado não tem como executar o método `metodoEstaticoDaClasse`.
+
+:skull_and_crossbones: :skull_and_crossbones: :skull_and_crossbones: **CUIDADO** Apesar de podermos usar a palavra reservada `this` dentro de um método estático NÃO podemos confundir o `this` que está dentro do método estático com o `this` que está nos métodos não estáticos. O primeiro faz referência à declaração de Classe, enquanto o segundo faz referência ao objecto que será instanciado com a Classe.
+
+Abaixo um exemplo (modificado) retirado do [MDN Web docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+
+```js
+class Animal {
+  speak() {
+    return this;
+  }
+
+  static eat() {
+    return this;
+  }
+}
+
+let obj = new Animal();
+obj.speak(); // the Animal object
+
+Animal.eat(); // class Animal
+```
+
+#### _static properties_
+
+Definir propriedades estáticas, isto é, propriedades na declaração de classe ou até mesmo no `prototype` não podem ser definidas dentro da declaração da classe. Elas devem ser definidas do lado de fora. Por exemplo:
+
+```js
+class GeradorDeCliente {
+  constructor(nome, sobrenome) {
+    this.nome = nome;
+    this.sobrenome = sobrenome;
+
+    GeradorDeCliente.totalDeClientesCriados++;
+  }
+
+  static getTotalDeClientesCriados() {
+    /*
+    ou no lugar de usar o this: 
+    GeradorDeCliente.totalDeClientesCriados 
+    (mais explícito e evita confusões, voy seguir com o this
+    para reforçar a idéia de que o this em métodos estáticos
+    possuem um valor diferente do this dos outros métodos)     
+    */
+
+    return this.totalDeClientesCriados;
+  }
+
+  nomeCompleto() {
+    return this.nome + " " + this.sobrenome;
+  }
+
+  nomeEmCaixaBaixa() {
+    return this.nome.toLowerCase();
+  }
+}
+
+GeradorDeCliente.totalDeClientesCriados = 0;
+
+console.log(GeradorDeCliente.totalDeClientesCriados); // 0
+
+const cliente1 = new GeradorDeCliente("André", "Prince");
+
+console.log(GeradorDeCliente.totalDeClientesCriados); // 1
 ```
