@@ -177,7 +177,9 @@ console.log(cliente1.nomeEmCaixaBaixa());
 </div>
 
 - Ok! com o `new` o novo objecto foi criado e retornado automaticamente, mas e as `funçõesDeClienteAgrupadas`?
-- e o `this`: com o uso do `new` na invocação da função geradora **o `this` passa a ser o novo objecto criado**.
+- e o `this`?: com o uso do `new` na invocação da função geradora **o `this` passa a ser o novo objecto criado**. Caso a função geradora, escrita da forma como está, fosse executada sem a precedência do `new` o `this` seria o que? _depende_, pois pode vir a ser o _Global Object_, o _Window Object_ etc. Quando uma função geradora é implementada como no caso acima ela tem de ser executada com a precedência da palavra reservada `this`.
+
+> :eyes: Por convenção usa-se a primeira letra das funções geradoras, que necessitem ser executadas com a precedência da palavra reservada `new`, escrita em letra maiúscula. Assim a função `geradorDeCliente` passou a ser nomeada como `GeradorDeCliente`.
 
 ### 2º ¾ Passo na Solução
 
@@ -227,8 +229,6 @@ console.log(cliente1.__proto__);
 ```
 
 ### em memória como resultado da execução do código temos:
-
-> :eyes: Por convenção usa-se a primeira letra das funções geradoras, que necessitem ser executadas com a precedência da palavra reservada `new`, escrita em letra maiúscula. Assim a função `geradorDeCliente` passou a ser nomeada como `GeradorDeCliente`.
 
 <div align="center">
   <img width="800" src='./imgs/7.png'>
