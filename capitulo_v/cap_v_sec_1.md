@@ -152,3 +152,89 @@ console.log(cliente1.nomeEmCaixaBaixa());
 <div align="center">
   <img width="800" src='./imgs/4.png'>
 </div>
+
+- Resumindo:
+  Passo 1: criamos uma _factory_ para facilitar a criação de objectos (esta _factory_ permite muitas outras coisas, mas estou focado em chegar no modelo de Classes no javascript)
+  Passo 2: usamos a cadeia de protótipos para evitar repetir código entre objectos.
+
+## 2º ½ Passo da Solução
+
+- utilização da palavra reserva `new`. Ao usarmos o `new` antes de uma função geradora (de uma _factory_) o "javascript" automatiza duas coisas para o nosso código:
+
+1 - a criação do novo objecto; e
+2 - o retorno desse objecto.
+
+### vejamos:
+
+- no momento temos
+<div align="center">
+  <img width="800" src='./imgs/5.png'>
+</div>
+
+- com a palavra reservada `new`
+<div align="center">
+  <img width="800" src='./imgs/6.png'>
+</div>
+
+- Ok! com o `new` o novo objecto foi criado e retornado automaticamente, mas e as `funçõesDeClienteAgrupadas`?
+- e o `this`: com o uso do `new` na invocação da função geradora **o `this` passa a ser o novo objecto criado**.
+
+### 2º ¾ Passo na Solução
+
+- as `funçõesDeClienteAgrupadas` terão de ficar em outro lugar. Mas temos de lembrar que as funções em javascript são na verdade funções e objectos. Por exemplo:
+
+```js
+function nomeCompleto(nome, sobrenome) {
+  return nome + " " + sobrenome;
+}
+
+nomeCompleto.what = "retorna o nome completo";
+
+console.log(nomeCompleto("André", "Prince")); // 'André Prince'
+console.log(nomeCompleto.what); // 'retorna o nome completo'
+```
+
+- `what` é uma propriedade de `nomeCompleto` e como tal pode ser acessada como acessamos propriedades em objectos (com a notação de `.`)
+
+- Mas objectos (do combo `function`/`object`) possuem uma outra propriedade quando são criados, a propriedade `prototype`.
+
+- detalhes da propriedade `prototype` em [MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)
+
+- Vamos usar esta propriedade `prototype` da parte `object` da função geradora `geradorDeCliente` para guardar os métodos agrupados dos clientes.
+
+### no código passamos a ter:
+
+```js
+function GeradorDeCliente(nome, sobrenome) {
+  this.nome = nome;
+  this.sobrenome = sobrenome;
+}
+
+GeradorDeCliente.prototype.nomeCompleto = function () {
+  return this.nome + " " + this.sobrenome;
+};
+
+GeradorDeCliente.prototype.nomeEmCaixaBaixa = function () {
+  return this.nome.toLowerCase();
+};
+
+const cliente1 = new GeradorDeCliente("André", "Prince");
+const cliente2 = new GeradorDeCliente("Sérgio", "Júnior");
+
+console.log(cliente1.nome);
+console.log(cliente1.nomeCompleto());
+console.log(cliente1.__proto__);
+```
+
+### em memória como resultado da execução do código temos:
+
+<div align="center">
+  <img width="800" src='./imgs/7.png'>
+</div>
+
+- no console
+<div align="center" style="margin-bottom: 50px">
+  <img width="400" src='./imgs/8.png'>
+</div>
+
+> :eyes: Por convenção usa-se a primeira letra das funções geradoras, que necessitem ser executadas com a precedência da palavra reservada `new`, escrita em letra maiúscula. Assim a função `geradorDeCliente` passou a ser nomeada como `GeradorDeCliente`.
