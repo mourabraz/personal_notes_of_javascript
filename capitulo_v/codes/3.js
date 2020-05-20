@@ -20,4 +20,4 @@ const cliente2 = geradorDeCliente("Sérgio", "Júnior");
 
 console.log(cliente1);
 console.log(cliente1.nomeEmCaixaBaixa());
-// console.log(cliente2);
+console.log(cliente2);
