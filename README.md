@@ -5,3 +5,5 @@
 ## Capítulo v - Classes no Javascript ([ler](./capitulo_v/cap_v_sec_1.md))
 
 ## Capítulo w - Fundações do Javascript ([ler](./capitulo_w))
+
+## Capítulo z - Deploy on Ubuntu server ([ler](./capitulo_z/cap_1_sec_1.md))
