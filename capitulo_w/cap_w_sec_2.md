@@ -239,4 +239,8 @@ console.log(soma(1, 2)());
 
 - como as arrow functions não possuem o `this`, o `this` dentro da arrow function (total) terá o mesmo valor do `this` da função soma. Como o valor do `this` na função soma é o `global object` o valor do `this` em total também será o `global object`.
 
+<div>
+  <img width="600" src='./imgs/section_2/code_16.png'>
+</div>
+
 ## **Como que a arrow function guarda esse valor ou como que afirmamos que o `this` será definido em tempo de execução vai ser discutido na parte sobre closures**
