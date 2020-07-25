@@ -11,6 +11,8 @@ https://www.ecma-international.org/ecma-262/5.1/#sec-15.3
 
 ### Closure está presente na esmagadora maioria dos nossos códigos, o fato de javascript SER "Closure" é que permite funções usarem `data` definidos no `scope` de fora.
 
+### NOTA: a interpretação a seguir NÃO retrata ao pé da letra (num sentido estrito) como a _engine_ do javascript funciona, mas é SUFICIENTE para sedimentar o modelo mental de como é o seu funcionamento. Por favor leve isto em consideração e leve em conta que, no meu entendimento, a forma como é demonstrado facilita o entendimento e pode ser aplicado como se na realidade se tratasse dessa forma!
+
 ## Sem pensar em Closure vamos ver o que acontece ao executar o código abaixo:
 
 ```js
