@@ -1,3 +1,7 @@
+<div align="center">
+  <img width="600" src='./imgs/js_logo_op_new.png'>
+</div>
+
 # Resumo da palavra reservada `new` com (Ylvis)
 
 \- _What does the `new` say?_

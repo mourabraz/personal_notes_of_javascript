@@ -1,5 +1,9 @@
 # Fundações do Javascript
 
+<div align="center">
+  <img width="600" src='./imgs/js_logo_closures_i.png'>
+</div>
+
 ## Closure
 
 - C.L.O.V.E (Closed Over Variable Environment);
