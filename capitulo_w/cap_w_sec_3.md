@@ -34,7 +34,6 @@ const counterFunc = memoizedCounter();
 
 console.log(counterFunc()); // 1
 console.log(counterFunc()); // 2
-}
 ```
 
 <div>
