@@ -137,4 +137,55 @@ Na **definição da função**.... Hum, então o `[[Scope]]` é determinado pelo
   <img width="1000" src='./imgs/section_3/ec_9.png'>
 </div>
 
+# Outro exemplo:
+
+```js
+function multiplyBy(value) {
+  function multiply(anotherValue) {
+    return value * anotherValue;
+  }
+
+  return multiply;
+}
+
+const multiply2By = multiplyBy(2);
+const multiply10By = multiplyBy(10);
+
+console.log(multiply2By(3)); // 6
+console.log(multiply10By(3)); // 30
+
+console.log(multiply2By(4)); // 8
+console.log(multiply10By(4)); // 40
+```
+
+- neste exemplo o "valor" do `value` ficou _closed_ à função `multiply`!
+
+## Mas temos de ter cuidado quando afirmamos que o "valor" ficou _closed_ à função.
+
+-Por exemplo:
+
+```js
+let name = "Carlos";
+
+function sayHello() {
+  function hello() {
+    return "Hello " + name;
+  }
+
+  return hello;
+}
+
+const say = sayHello();
+
+console.log(say()); // Hello Carlos
+
+name = "João";
+
+console.log(say()); // Hello João
+```
+
+- Neste caso se eu afirmasse que o valor de `name` ficou _closed_ à função `sayHello` estaria comentendo um erro. Pois, como se vê no exemplo, ao alterar o valor de `name` o resultado mudou.
+
+- Na realidade o que ficou _closed_ à função foi a variável e não o valor em si!
+
 ## That's it! Closed!
