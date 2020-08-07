@@ -9,3 +9,5 @@ const user = {
 };
 
 console.log(user.getMessage());
+
+console.log("Teste de video");
