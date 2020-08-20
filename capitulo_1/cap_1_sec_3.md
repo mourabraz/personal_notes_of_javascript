@@ -40,7 +40,7 @@ Além do escopo ser global ou local ele também é encadeado como uma árvore, f
 Metaforicamente...
 
 <div align="center">
-  <img width="300" src='./imgs/arvore_escopo.png'>
+  <img width="800" src='./imgs/escopo_blocos.png'>
 </div>
 
 Agora colocando variáveis dentro do seu respectivo escopo, por exemplo:
