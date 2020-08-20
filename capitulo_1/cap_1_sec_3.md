@@ -193,8 +193,18 @@ Para cada um deles o que irá determinar se pertencem a um ou a outro escopo é 
 - variáveis declaradas com `let` ou `const` serão sempre do escopo global ou do escopo local do bloco (mesmo que o bloco seja o de uma função);
 - variáveis declaradas SEM `var`, `let` ou `const` serão sempre do escopo global. (não funciona em modo "strict").
 
-## Exemplos:
+## Exemplo:
 
 <div align="center">
   <img width="800" src='./videos/escopo_exemplo_2.gif'>
 </div>
+
+Quando interpretador do javascript é acionado ele irá ler o código todo antes de executá-lo e então montar o escopo global e os escopos locais.
+
+- Ao se deparar com um declaração de variável com `var`, o nome da variável será colocado no escopo global.
+- Ao se deparar com uma decalaração de função, o nome da função será colocado no escopo global.
+- e é criado um escopo local para o corpo da função, ao se deparar com a declaração de uma variável com `var`, o nome da variável será colocado no escopo local desta função.
+
+- se no corpo desta função existir um bloco de código como o de um `if`, `for`, `while` etc Um escopo local será criado, se e somente se, dentro do bloco existir a declaração de uma variável com `const` ou `let`. Existindo uma declaração de variável com o `const` ou `let`, o nome da variável será adicionado ao escopo local do bloco de código. No entanto, repare que se dentro do bloco de código a declaração de variável for com o uso do `var`, o nome da variável ficará no escopo local da função (`var` só produz escopo global ou de função e NUNCA de bloco de código).
+
+- Mesmo dentro de um bloco de código ou dentro da definição de uma função, caso uma variável seja declarada sem o `var`, `let`, ou `const`, independentemente de quanto aninhada essa variável esteja, o nome da variável sempre será adicionado ao escopo global (NÃO funciona em _strict mode_).
