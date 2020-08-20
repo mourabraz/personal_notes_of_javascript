@@ -195,7 +195,6 @@ Para cada um deles o que irá determinar se pertencem a um ou a outro escopo é 
 
 ## Exemplos:
 
-<video controls autoplay>
-  <source src="./videos/escopo_example_2.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<div align="center">
+  <img width="800" src='./videos/escopo_exemplo_2.gif'>
+</div>
