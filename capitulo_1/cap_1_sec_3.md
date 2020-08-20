@@ -199,7 +199,7 @@ Para cada um deles o que irá determinar se pertencem a um ou a outro escopo é 
   <img width="800" src='./videos/escopo_exemplo_2.gif'>
 </div>
 
-Quando interpretador do javascript é acionado ele irá ler o código todo antes de executá-lo e então montar o escopo global e os escopos locais.
+Quando o interpretador do javascript é acionado ele irá ler o código todo antes de executá-lo e então montar o escopo global e os escopos locais.
 
 - Ao se deparar com um declaração de variável com `var`, o nome da variável será colocado no escopo global.
 - Ao se deparar com uma decalaração de função, o nome da função será colocado no escopo global.
