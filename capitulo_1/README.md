@@ -7,3 +7,5 @@
 ### - Variáveis
 
 ## Const, let e var ([ler](./cap_1_sec_2.md))
+
+## Escopo ([ler](./cap_1_sec_3.md))
