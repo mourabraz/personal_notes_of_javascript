@@ -26,9 +26,11 @@ Declaração !== Atribuíção
 
 ---
 
-O escopo é determinado como uma das primeiras tarefas do **interpretador** do javascript, e será construído/estruturado pelo interpretador por meio de uma leitura do código antes da sua execução. Depois que o escopo é estruturado ele não irá mudar mais. É portanto um **escopo Estático**.
+O escopo é determinado como uma das primeiras tarefas do **interpretador** do javascript, e será construído/estruturado, por meio de uma leitura do código, antes da sua execução. Depois que o escopo é estruturado ele não irá mudar mais.
 
-Como modelo mental, pode-se dizer que o interpretador irá, em um primeiro momento, ler o código e criar o escopo das variáveis. O escopo das variáveis no javascript divide-se em:
+É portanto um **escopo Estático**.
+
+Como modelo mental, pode-se dizer que o interpretador, em um primeiro momento, irá ler o código e criar o escopo para as variáveis. O escopo no javascript divide-se em:
 
 - global
 - local:
@@ -171,7 +173,7 @@ error: Uncaught TypeError: Cannot read property 'name' of undefined
 
 - A variável `user` existe (é visível) na execução da função `mudaTitulo`, porque a variável sofreu o _hoisting_. E isto ocorre porque o interpretador leu o código antes de executá-lo e construiu o escopo, que é estático e anterior à execução do código.
 
-- Mais uma vez, digo, para o escopo só interessa a declaração e não a atribuição. Como todas as variáveis em javascript "nascem" como `undefined`. Ao usar uma variável que foi içada, esta terá o valor de `undefined`.
+- Repetindo: para o escopo só interessa a declaração e não a atribuição. Como todas as variáveis em javascript "nascem" como `undefined`. Ao usar uma variável que foi içada, esta terá o valor de `undefined`.
 
 ### Atenção: ainda não falamos da declaração de variáveis com `let` e `const`.
 
@@ -179,11 +181,11 @@ Mas caso a variável `user` tivesse sido declarada com `const`, no lugar de `var
 
 A diferença é que com o uso do `const` e do `let` as variáveis, embora existam, ficam indisponíveis e o javascript joga um erro de referência.
 
-["Const, let e var"]('/cap_1_sec_2.md')
+["Const, let e var"]('/cap_1_sec_2.md') (\*\* o texto serve tanto para o `let` como para o `const`)
 
 > as variàveis declaradas com let são hoisting para o topo do bloco de código, mas caso sejam referênciadas antes da sua declaração um erro será lançado: ReferenceError. (as variáveis estarão no temporal dead zone até à sua declaração.)
 
-## O Escopo Global e Local
+## Voltando ao assunto: Escopo Global e Local
 
 Só existe um determinado numero de escopos em javascript, temos o escopo global que é aquele que referência as variáveis declaradas no corpo principal do código e temos o escopo local. O escopo local é aquele construído pelo corpo de funções e pelo corpo de blocos de código que possuam alguma declaração com `let` ou `const`.
 
@@ -222,3 +224,87 @@ Ao olhar o esquema podemos identificar com facilidade quem tem ou não tem visib
 - o único trecho de código onde a variável `name` está disponível é dentro do escopo local da _Function_ `diga`.
 
 ### \*\*\* Atenção: objectos usam chaves de abertura e de fecho, mas NÃO produzem qualquer tipo de efeito no escopo!
+
+## Outros exemplos:
+
+- Nos exemplos abaixo irei colocar o código e o comentário da saída no terminal quando o código é executado.
+
+1º exercício
+
+```js
+var titulo = "O grande livro";
+
+{
+  let titulo = "O pequeno artigo";
+
+  console.log(titulo); // "O pequeno artigo"
+}
+
+console.log(titulo); // "O grande livro"
+```
+
+Mesmo havendo a possibilidade de que se saiba o resultado esperado na execução do código acima, o mais importante seria sedimentar a forma como o modelo mental funciona, para estes casos eu escolhi o da árvore de escopos.
+Assim, mesmo sendo um exemplo fácil irei desenhar a árvore do código e depois verificar se a saída corresponde com o que o modelo mental me informa.
+
+<div align="center">
+  <img width="200" src='./imgs/arvore_escopo_ex_1.png'>
+</div>
+
+- ao executar o primeiro `console.log(titulo)`, a variável que aqui é referenciada é a do escopo local do bloco de código, ou seja, apesar de posuirem o mesmo nome para as variáveis, como se encontram em escopos diferentes não existe conflito. (grifo que foi usada a palavra reservada `let`)
+
+2º exercício
+
+```js
+var numeroX = 38;
+
+{
+  let numeroX = 1;
+  numeroY = 2;
+
+  console.log(numeroX + numeroY); // 3
+}
+
+console.log(numeroX + numeroY); // 40;
+```
+
+<div align="center">
+  <img width="200" src='./imgs/arvore_escopo_ex_2.png'>
+</div>
+
+- a variável `numeroY` como não está sendol precedida por `var`, `let` ou `const` e como NÃO estamos no _strict mode_. A variável será içada para o escopo global.
+
+3º exercício
+
+```js
+var numeroX = 38;
+
+function sum() {
+  var numeroX = 1;
+  {
+    var numeroY = 2;
+    let numeroZ = 4;
+    console.log(numeroZ); // 4
+  }
+  console.log(numeroX + numeroY); // 3
+}
+
+sum();
+
+// console.log(numeroX + numeroY); // error: Uncaught ReferenceError: numeroY is not defined
+```
+
+<div align="center">
+  <img width="200" src='./imgs/arvore_escopo_ex_3.png'>
+</div>
+
+- no segundo `console.log()` a variável `numeroX` está disponível porque se encontra no escopo global e a variável `numeroY` está disponível porque se encontra no escopo local da função (e NÃO no escopo local do bloco, porque foi declarada com `var` e `var` só participa em escopo global e local de funções!)
+
+- no último `console.log()` caso não esteja comentado irá ocorrer um ReferenceError. Pois a variável `numeroY` não está definida (declarada) no escopo global!
+
+---
+
+## Como última nota gostaria de realçar que o Escopo é Estático (depois de estabelecido ele não muda). Mas, existem formas de se estabelecer um certo dinamismo em javascript, como por exemplo o uso do `this`.
+
+### O entendimento do escopo não pode se misturar com o entendimento do `this`. Isso pode causar confusão, já que o primeiro é estático e o segundo é dinâmico.
+
+Sobre o `this` pode ler mais aqui [no capítulo W]('../capitulo_w/cap_w_sec_2_v2.md')
