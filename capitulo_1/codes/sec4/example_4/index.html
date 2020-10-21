@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Exemplo de problemas na falta do uso de Modules</h1>
+
+    <script>
+      window.modules = {
+        temp: {},
+
+        get example() {
+          return this.temp;
+        },
+        set example(value) {
+          Object.assign(this.temp, value);
+        },
+      };
+    </script>
+
+    <script src="./1.js"></script>
+    <script src="./2.js"></script>
+
+    <script>
+      var { hello, countLetters } = modules.example;
+
+      console.log(hello());
+      console.log(countLetters());
+    </script>
+  </body>
+</html>
