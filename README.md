@@ -1,9 +1,24 @@
 # Manual do Javascript
 
-## Capítulo 1 - Tipos de dados e variáveis ([ler](./capitulo_1))
+## Capítulo 1
 
-## Capítulo v - Classes no Javascript ([ler](./capitulo_v/cap_v_sec_1.md))
+- Tipos de dados e variáveis ([ler](./capitulo_1/cap_1_sec_1.md))
+- Const, let e var ([ler](./capitulo_1/cap_1_sec_2.md))
+- Escopo ([ler](./capitulo_1/cap_1_sec_3.md))
+- Module Pattern ([ler](./capitulo_1/cap_1_sec_4.md))
 
-## Capítulo w - Fundações do Javascript ([ler](./capitulo_w))
+## Capítulo V - Classes no Javascript
 
-## Capítulo z - Deploy on Ubuntu server ([ler](./capitulo_z/cap_1_sec_1.md))
+- Classes no Javascript ([ler](./capitulo_v/cap_v_sec_1.md))
+- Resumo da palavra reservada `new` ([ler](./capitulo_v/cap_v_sec_2.md))
+
+## Capítulo W - Fundações do Javascript
+
+- Javascript é _single thread_ (de uma só tarefa) ([ler](./capitulo_w/cap_w_sec_1.md))
+- A palavra `this` ([ler o novo](./capitulo_w/cap_w_sec_2_v2.md))
+- A palavra `this` ([ler](./capitulo_w/cap_w_sec_2.md))
+- Closures ([ler](./capitulo_w/cap_w_sec_3.md))
+
+## Capítulo Z - Deploy on Ubuntu server
+
+- Tutorial ([ler](./capitulo_z/cap_z_sec_1.md))
