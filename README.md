@@ -1,7 +1,8 @@
 # Manual do Javascript
 
 ## Capítulo 1
-
+- Breve histórico ([ler](./capitulo_1/cap_1_breve_historico.md))
+- Estrutura Léxica ([ler](./capitulo_1/cap_1_estrutura_lexica.md))
 - Tipos de dados e variáveis ([ler](./capitulo_1/cap_1_sec_1.md))
 - Const, let e var ([ler](./capitulo_1/cap_1_sec_2.md))
 - Escopo ([ler](./capitulo_1/cap_1_sec_3.md))
