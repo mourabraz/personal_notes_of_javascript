@@ -203,3 +203,26 @@ null e undefined quando avaliadow como booleano equivalem a um `false`.
 ## Sobre os tipos primitivos e auto boxing/unboxing
 
 ## **Valores Primitivos são todos imutáveis**
+
+## D - Coerções
+
+| Value | to String | to Number | to Boolean |
+| - | - | - | - |
+|undefined|"undefined"|NaN|false|
+|null|"null"|0|false|
+|true|"true"|1| |
+|false|"false"|0| |
+|"" _(string vazia)_| |0|false|
+|"4.2"| |4.2|true|
+|"one"| |NaN|true|
+|0|"0"| |false|
+|-0|"0"| |false|
+|1|"1"| |true|
+|Infinity|"Infinity"| |true|
+|-Infinity|"-Infinity"| |true|
+|NaN|"NaN"| |false|
+|{ }| | |true|
+|[ ]|""|0|true|
+
+
+
