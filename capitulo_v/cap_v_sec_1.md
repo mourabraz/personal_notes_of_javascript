@@ -384,6 +384,8 @@ do [MDN Web docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 > :eyes: As classes não passam pelo _hoisting_, por isso, declare as classes antes de as usar.
 
+> :collision: Todo o código em classes está implicitamente em modo estrito.
+
 ### Então com a palavra reservada `class` ficou mais familiar e fácil (porque juntou a função geradora e a manipulação do objecto `prototype`) lidar com esta forma de programar (mais orientada a objectos - tudo o que queremos é produzir objectos de forma mais eficaz possível). Mas em javascript existem "particularidades".
 
 #### _static methods_
@@ -490,4 +492,4 @@ const cliente1 = new GeradorDeCliente("André", "Prince");
 console.log(GeradorDeCliente.totalDeClientesCriados); // 1
 ```
 
-## Javascript não é uma linguagem desenhada para ser usada em um paradigma Orientado a objectos, é uma lingugaem orientada a protótipos. Mas nada impede, e é bem comum, **programar em javascript com o paradigma Orientado a Objectos**
+## Javascript é uma linguagem multiparadigma. E especificamente, é uma lingugagem com herança baseada em protótipos com inúmeros recursos que facilitam a **programação com o paradigma Orientado a Objectos**
