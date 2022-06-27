@@ -492,4 +492,4 @@ const cliente1 = new GeradorDeCliente("André", "Prince");
 console.log(GeradorDeCliente.totalDeClientesCriados); // 1
 ```
 
-## Javascript é uma linguagem multiparadigma. E especificamente, é uma lingugagem com herança baseada em protótipos com inúmeros recursos que facilitam a **programação com o paradigma Orientado a Objectos**
+## Javascript é uma linguagem multiparadigma. E especificamente, é uma linguagem com herança baseada em protótipos com inúmeros recursos que facilitam a **programação com o paradigma Orientado a Objectos**
