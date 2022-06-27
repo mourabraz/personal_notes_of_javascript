@@ -1,9 +1,18 @@
 # Classes no Javascript
 
-- Javascript não possuiu classes, não é orientado a classes, no entanto, possuiu mecanismos que permitem o uso de algo muito parecido com classes.
+- Javascript não possuiu classes (não no sentido estrito que estamos acostumados em JAVA), não é orientado a classes, no entanto, possuiu mecanismos que permitem o uso de algo muito parecido com classes.
 - A vantagem do uso de classes, na minha opinião, é que o seu uso facilita muito a implementação orientada a objectos, além do fato de, no meu caso, estar mais habituado a usar uma programação com o uso de classes.
 - Javascript, apesar de oferecer este mecanismo que nos permite usar uma sintaxe muito próxima da que usamos em linguagens orientadas a classes, não possui artifícios exaustivos que permitam o uso completo desse paradigma. Por exemplo, em Javascript não existem interfaces.
 - Javascript é orientado a protótipos e entender a cadeia de protótipo (_prototype chain_) vai permitir entender exatamente como funciona essa aproximação às classes.
+
+## Mas o que são classes
+Se pensarmos no conceito amplo do que é uma classe, então, em JS existem de fato classes propriamente ditas. Isto porque uma classe é um tipo de coisa. É como categorizamos o mundo à nossa volta. Agrupamos coisas, em um determinado contexto, e que fazem sentido serem classificadas por um mesmo tipo ou classe. Por exemplo: numa livraria temos diversos livros agrupados por determinado critério que seja pertinente àquela classificação. Temos os livros de Suspense, os Romances, Fição científica etc. Isto seria uma forma de classificar os diversos livros dentro de uma livraria. Também podiam ser classificados pelo público alvo, livros para infantis, juvenis ou para adultos.
+
+Ter uma classe é a possibilidade de agrupar coisas que fazem sentido estarem juntas.
+
+Numa escola temos diversas classes por cada ano de escolaridade.
+
+Então ter classe ou não seria mais a capacidade de numa linguagem de programação podermos agrupar dados que por sua semelhança pertenceriam a um mesmo tipo de coisa.
 
 ## Simular um problema
 
@@ -38,6 +47,8 @@ const cliente = {
 
 - Cliente é um objecto que possui duas propriedades, `nome` e `sobrenome`, e um comportamento (método), `nomeCompleto` (por enquanto).
 - Agora os dados de um Cliente ficam **encapsulados** em um _object_ com o nome `cliente`.
+
+> qualquer outro cliente, com outro nome e sobrenome, seria um objecto completamente diferente, mas ambos seriam do tipo Cliente. Portanto, é possível agrupar estes ojectos classificados como Clientes, isto é, objectos que pertençam à mesma classe Cliente.
 
 ## Caso tenhamos mais de um cliente, ficará mais fácil lidar com os dados de cada um:
 
@@ -362,6 +373,8 @@ console.log(cliente1.__proto__);
 </div>
 
 ### O que a palavra reservada `class` fez foi permitir uma apresentação melhor, nada além disso, por isso que classes no sentido de `class` diz-se que é um _syntax sugar_ em javascript. Por baixo dos panos nada mudou até o término do 2º passo da solução.
+
+> aqui referindo class como a que estamos mais habituados em liguagens como JAVA
 
 ### Após o uso da `class`, na memória, nada mudou em comparação com o último esquema apresentado.
 
